@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paradigm Gym &mdash; Bodybuilding &amp; Powerlifting, Nottingham</title>
+<meta name="description" content="Premier bodybuilding and powerlifting gym in Carlton, Nottingham. Competition-standard equipment, open daily, on-site parking.">
+<meta name="theme-color" content="#0C0D0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0C0D0E; --panel:#121315; --line:rgba(255,255,255,.09);
+  --ink:#F3F1EC; --muted:#9B978F; --acc:#1E5C43; --acc2:#C45A3A;
+  --forest:#0B1F17; --serif:'Playfair Display',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 Archivo,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+::selection{background:var(--acc);color:#fff}
+h1,h2,h3{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.02}
+em{font-family:var(--serif);font-style:italic;font-weight:500}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+.k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--acc2);display:flex;align-items:center;gap:12px}
+.k:before{content:"";width:26px;height:1px;background:var(--acc);display:block}
+.lead{color:var(--muted);max-width:56ch}
+
+/* ---------- cinematic intro ---------- */
+#intro{position:fixed;inset:0;z-index:200;background:#090A0B;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity .9s ease,filter .9s ease,transform .9s ease}
+#intro.done{opacity:0;filter:blur(14px);transform:scale(1.06);pointer-events:none}
+.smoke{position:absolute;inset:-20%;filter:blur(60px);opacity:.85;pointer-events:none}
+.smoke i{position:absolute;border-radius:50%;mix-blend-mode:screen;animation:drift 9s ease-in-out infinite alternate}
+.smoke i:nth-child(1){width:46vw;height:46vw;left:6%;top:12%;background:radial-gradient(circle,rgba(163,28,24,.34),transparent 65%)}
+.smoke i:nth-child(2){width:52vw;height:52vw;right:2%;bottom:4%;background:radial-gradient(circle,rgba(20,64,45,.4),transparent 65%);animation-delay:-3s}
+.smoke i:nth-child(3){width:30vw;height:30vw;left:38%;top:44%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 70%);animation-delay:-6s}
+@keyframes drift{from{transform:translate3d(-3%,2%,0) scale(1)}to{transform:translate3d(4%,-3%,0) scale(1.12)}}
+#intro .grain{position:absolute;inset:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+.intro-in{position:relative;text-align:center;padding:0 6vw}
+.intro-in .est{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.intro-in h1{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(40px,8vw,96px);line-height:.98;background:linear-gradient(180deg,#FFFFFF 0%,#D9D6D0 38%,#7E7B76 62%,#F2EFE9 78%,#6E6B66 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.01em;filter:drop-shadow(0 24px 60px rgba(0,0,0,.85))}
+.intro-in .tag{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--acc2);margin-top:18px}
+.loadbar{position:relative;width:min(280px,56vw);height:1px;background:rgba(255,255,255,.14);overflow:hidden}
+.loadbar i{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--acc),var(--acc2));transform:scaleX(0);transform-origin:left;animation:load 2.1s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes load{to{transform:scaleX(1)}}
+.intro-enter{position:relative;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:0;font-family:Archivo,sans-serif}
+.intro-enter:hover{color:var(--ink)}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:22px 4vw;transition:background .4s,padding .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.solid{background:rgba(10,11,12,.82);backdrop-filter:blur(18px);padding:14px 4vw;border-color:var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.16em;font-size:13px;text-transform:uppercase}
+.brand i{width:26px;height:26px;border:1px solid var(--acc);transform:rotate(45deg);display:grid;place-items:center}
+.brand i:after{content:"";width:8px;height:8px;background:var(--acc);box-shadow:0 0 14px var(--acc)}
+.nl{display:flex;gap:30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nl a:hover{color:var(--ink)}
+.nr{display:flex;align-items:center;gap:16px}
+.tel{font-size:12px;letter-spacing:.1em;color:var(--muted)}
+.tel:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 26px;font:600 12px/1 Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+.btn.primary{background:linear-gradient(120deg,var(--acc),color-mix(in srgb,var(--acc) 70%,#000));color:#fff;box-shadow:0 14px 40px color-mix(in srgb,var(--acc) 35%,transparent)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 20px 55px color-mix(in srgb,var(--acc) 45%,transparent)}
+.btn.ghost{border-color:rgba(255,255,255,.22);color:var(--ink);background:transparent}
+.btn.ghost:hover{border-color:var(--acc2);background:rgba(255,255,255,.04)}
+.btn.sm{padding:11px 20px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:2vw;padding:120px 4vw 70px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 55% at 78% 46%,color-mix(in srgb,var(--acc) 16%,transparent),transparent 70%),
+  radial-gradient(45% 45% at 12% 88%,rgba(11,31,23,.55),transparent 70%),
+  linear-gradient(180deg,#0A0B0C,#0C0D0E);z-index:0}
+.hero>*{position:relative;z-index:1}
+#stage{position:absolute;inset:0;z-index:0;cursor:grab}
+#stage:active{cursor:grabbing}
+.stage-fallback{position:absolute;inset:0;z-index:0;background:radial-gradient(50% 60% at 70% 50%,color-mix(in srgb,var(--acc) 30%,transparent),transparent 70%)}
+.hero-copy{padding-left:2vw;max-width:620px}
+.hero .k{margin-bottom:22px}
+.hero h1{font-size:clamp(44px,6.6vw,92px);line-height:.94;letter-spacing:-.03em;margin-bottom:26px;text-transform:uppercase}
+.hero h1 em{display:block;font-size:.92em;color:var(--acc2);text-transform:none;letter-spacing:0}
+.hero p.lead{margin-bottom:34px;font-size:17px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px}
+.hmeta{display:flex;gap:30px;flex-wrap:wrap;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hmeta b{display:block;color:var(--ink);font-weight:500;letter-spacing:.06em;margin-top:6px;font-size:12px}
+.scrollh{position:absolute;bottom:26px;left:4vw;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;z-index:2}
+.scrollh:after{content:"";width:44px;height:1px;background:linear-gradient(90deg,var(--acc),transparent);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+/* ---------- marquee ---------- */
+.mq{border-block:1px solid var(--line);overflow:hidden;background:#0A0B0C;padding:16px 0}
+.mqt{display:flex;gap:40px;white-space:nowrap;animation:slide 26s linear infinite;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.mqt b{color:var(--acc)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:110px 0}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:54px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(30px,4.2vw,54px);text-transform:uppercase}
+.sec-h h2 em{color:var(--acc2);text-transform:none}
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{position:relative;border:1px solid var(--line);border-radius:18px;padding:34px 30px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:transform .4s,border-color .4s,box-shadow .4s;overflow:hidden}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 0% 0%,color-mix(in srgb,var(--acc) 14%,transparent),transparent 60%);opacity:0;transition:opacity .4s}
+.card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--acc) 45%,transparent);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.card:hover:before{opacity:1}
+.card b{font-size:11px;letter-spacing:.24em;color:var(--acc2)}
+.card h3{font-size:23px;margin:14px 0 10px;text-transform:uppercase;letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:14.5px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.stat{background:#0D0E10;padding:36px 28px}
+.stat b{display:block;font-size:clamp(28px,3.4vw,44px);font-weight:700;letter-spacing:-.02em}
+.stat span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.tt{width:100%;border-collapse:collapse;font-size:14.5px}
+.tt th{text-align:left;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);padding:0 18px 16px;font-weight:500;border-bottom:1px solid var(--line)}
+.tt td{padding:18px;border-bottom:1px solid rgba(255,255,255,.05)}
+.tt tr:hover td{background:rgba(255,255,255,.025)}
+.tt td.cl{color:var(--ink);font-weight:500}
+.tt td.lv{color:var(--acc2);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.visit{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.visit .card{padding:44px 40px}
+.visit h3{font-size:clamp(26px,3vw,38px);margin-bottom:18px;text-transform:uppercase}
+.vrow{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14.5px}
+.vrow span{width:90px;flex:none;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.vrow a:hover{color:var(--acc2)}
+.cta-card{display:flex;flex-direction:column;justify-content:space-between;gap:26px;background:linear-gradient(150deg,color-mix(in srgb,var(--acc) 22%,#0d0e10),#0B0D0E 65%)}
+.cta-card h3{font-size:clamp(26px,3vw,36px)}
+.cta-card p{color:#CFCBC3;font-size:14.5px}
+footer{border-top:1px solid var(--line);padding:54px 0 34px;background:#0A0B0C}
+.frow{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;margin-bottom:34px}
+.frow .fcol p{color:var(--muted);font-size:13.5px}
+.frow .fcol b{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.fbot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6B66;border-top:1px solid rgba(255,255,255,.06);padding-top:22px}
+
+/* ---------- modal ---------- */
+#modal{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:20px;background:rgba(6,7,8,.72);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .35s}
+#modal.open{opacity:1;pointer-events:auto}
+.mcard{width:min(560px,100%);max-height:88svh;overflow:auto;background:#101113;border:1px solid var(--line);border-radius:22px;padding:38px 34px;transform:translateY(18px);transition:transform .35s}
+#modal.open .mcard{transform:none}
+.mcard h3{font-size:26px;text-transform:uppercase;margin-bottom:8px}
+.mcard h3 em{color:var(--acc2)}
+.mcard .sub{color:var(--muted);font-size:14px;margin-bottom:26px}
+.f{display:grid;gap:16px}
+.field label{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:11px;padding:13px 15px;color:var(--ink);font:inherit;font-size:14px;outline:none;transition:border-color .25s,box-shadow .25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 20%,transparent)}
+.field textarea{min-height:84px;resize:vertical}
+.mclose{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink);cursor:pointer;font-size:16px}
+.ok{display:none;text-align:center;padding:14px 0}
+.ok.show{display:block}
+.ok b{display:block;font-size:20px;margin-bottom:10px;text-transform:uppercase}
+.ok p{color:var(--muted);font-size:14px;margin-bottom:18px}
+.ok a{display:inline-block;margin:4px;padding:11px 20px;border:1px solid var(--line);border-radius:999px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.ok a:hover{border-color:var(--acc2)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;padding-top:104px;min-height:auto}
+  #stage{position:relative;height:46svh;min-height:320px;order:2}
+  .stage-fallback{display:none}
+  .hero-copy{padding-left:0;order:1;max-width:none}
+  .grid4,.visit{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .nl{display:none}
+  section{padding:76px 0}
+  .tt th:nth-child(4),.tt td:nth-child(4){display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .smoke i,.mqt{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="intro" aria-hidden="true">
+  <div class="smoke"><i></i><i></i><i></i></div>
+  <div class="grain"></div>
+  <div class="intro-in">
+    <p class="est">Est. Nottingham &nbsp;&middot;&nbsp; Carlton, Nottingham</p>
+    <h1>Paradigm</h1>
+    <p class="tag">Bodybuilding &middot; Powerlifting &middot; Carlton</p>
+  </div>
+  <div class="loadbar"><i></i></div>
+  <button class="intro-enter" id="enterBtn">Enter the floor</button>
+</div>
+
+<nav id="nav">
+  <a class="brand" href="#top"><i></i>Paradigm Gym</a>
+  <div class="nl">
+    <a href="#floor">The Floor</a><a href="#timetable">Timetable</a><a href="#visit">Visit</a>
+  </div>
+  <div class="nr">
+    <a class="tel" href="tel:tel:07817843126">07817 843 126</a>
+    <button class="btn primary sm" data-book>Book a tour</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="stage-fallback" id="stagefb"></div>
+  <div id="stage"></div>
+  <div class="hero-copy">
+    <p class="k">Bodybuilding &middot; Powerlifting &middot; Carlton</p>
+    <h1>Where physiques<em>are forged.</em></h1>
+    <p class="lead">Competition-standard kit, a serious floor and none of the fluff. Paradigm is built for people chasing a physique or a total &mdash; with the plates, machines and atmosphere to get there.</p>
+    <div class="cta-row">
+      <button class="btn primary" data-book>Book a private tour</button>
+      <button class="btn ghost" data-pass>Day pass &middot; drop in</button>
+    </div>
+    <div class="hmeta">
+      <div><span>Training floor</span><b>Comp standard</b></div>
+      <div><span>Open</span><b>Daily</b></div>
+      <div><span>Find us</span><b>Carlton, Nottingham</b></div>
+    </div>
+  </div>
+  <div class="scrollh">Scroll</div>
+</header>
+
+<div class="mq" aria-hidden="true"><div class="mqt"><span>Bodybuilding</span><b>&#9670;</b><span>Powerlifting</span><b>&#9670;</b><span>Hypertrophy</span><b>&#9670;</b><span>Carlton</span><b>&#9670;</b><span>Open daily</span><b>&#9670;</b><span>Bodybuilding</span><b>&#9670;</b><span>Powerlifting</span><b>&#9670;</b><span>Hypertrophy</span><b>&#9670;</b><span>Carlton</span><b>&#9670;</b><span>Open daily</span><b>&#9670;</b></div></div>
+
+<section id="floor">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <div>
+        <p class="k">The floor</p>
+        <h2>Built for <em>heavy work.</em></h2>
+      </div>
+      <p class="lead">Every rack loaded, every machine chosen for hypertrophy and heavy work. Open daily with parking at the door.</p>
+    </div>
+    <div class="grid4">
+      <article class="card rv"><b>01</b><h3>Competition-standard racks</h3><p>Power racks and benches spec'd for heavy pressing, with safety arms and quality bars.</p></article>
+      <article class="card rv"><b>02</b><h3>Hypertrophy machines</h3><p>Plate-loaded and pin-loaded kit built for the pump, laid out so you never queue.</p></article>
+      <article class="card rv"><b>03</b><h3>Deadlift &amp; platform zone</h3><p>Dedicated platform space with calibrated plates and deadlift bars.</p></article>
+      <article class="card rv"><b>04</b><h3>Open daily + parking</h3><p>Train when it suits you &mdash; doors open every day, with on-site parking.</p></article>
+    </div>
+    <div class="stats rv" style="margin-top:18px">
+      <div class="stat"><b>Daily</b><span>Open 7 days</span></div>
+      <div class="stat"><b>On-site</b><span>Free parking</span></div>
+      <div class="stat"><b>Comp grade</b><span>Equipment</span></div>
+      <div class="stat"><b>Carlton</b><span>Nottingham</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="timetable" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <div>
+        <p class="k">The week</p>
+        <h2>Classes worth <em>turning up for.</em></h2>
+      </div>
+      <button class="btn ghost rv" data-book>Book your first session</button>
+    </div>
+    <table class="tt rv">
+      <thead><tr><th>Day</th><th>Session</th><th>Time</th><th>Level</th></tr></thead>
+      <tbody><tr><td>Monday</td><td class=cl>Chest &amp; Delts</td><td>18:00</td><td class=lv>All levels</td></tr><tr><td>Tuesday</td><td class=cl>Squat Clinic</td><td>18:30</td><td class=lv>All levels</td></tr><tr><td>Wednesday</td><td class=cl>Back Width</td><td>18:00</td><td class=lv>All levels</td></tr><tr><td>Thursday</td><td class=cl>Deadlift Night</td><td>18:30</td><td class=lv>Intermediate</td></tr><tr><td>Saturday</td><td class=cl>Posing Practice</td><td>11:00</td><td class=lv>Beginner</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <div>
+        <p class="k">Visit</p>
+        <h2>Come see it <em>in person.</em></h2>
+      </div>
+    </div>
+    <div class="visit">
+      <div class="card rv">
+        <h3>Paradigm Gym<br><em>Carlton, Nottingham</em></h3>
+        <div class="vrow"><span>Address</span><a href="https://maps.google.com/?q=Paradigm+Gym+Carlton+Nottingham+NG4+2JR" target="_blank" rel="noopener">Carlton, Nottingham NG4 2JR</a></div>
+        <div class="vrow"><span>Hours</span><div>Open daily &middot; on-site parking</div></div>
+        <div class="vrow"><span>Call</span><a href="tel:tel:07817843126">07817 843 126</a></div>
+        <div class="vrow"><span>Instagram</span><a href="https://www.instagram.com/paradigm_gym/" target="_blank" rel="noopener">@paradigm_gym</a></div>
+      </div>
+      <div class="card cta-card rv">
+        <div>
+          <p class="k" style="color:#fff">Your first session</p>
+          <h3>Walk the floor.<br><em>Feel the kit.</em></h3>
+          <p>Private tours run daily. Day passes are open to anyone training seriously &mdash; message ahead and the door is yours.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn primary" data-book>Book a private tour</button>
+          <button class="btn ghost" data-pass>Request a day pass</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <div class="fcol"><b>Paradigm Gym</b><p>Carlton, Nottingham NG4 2JR<br>Carlton, Nottingham</p></div>
+      <div class="fcol"><b>Train</b><p><a href="#floor">The Floor</a><br><a href="#timetable">Timetable</a><br><a href="#" data-book>Private tour</a></p></div>
+      <div class="fcol"><b>Contact</b><p><a href="tel:tel:07817843126">07817 843 126</a><br><a href="https://www.instagram.com/paradigm_gym/" target="_blank" rel="noopener">@paradigm_gym</a><br><a href="https://maps.google.com/?q=Paradigm+Gym+Carlton+Nottingham+NG4+2JR" target="_blank" rel="noopener">Directions</a></p></div>
+    </div>
+    <div class="fbot"><span>&copy; <span id="yr">2026</span> Paradigm Gym &middot; Carlton, Nottingham</span><span>Bodybuilding &middot; Powerlifting &middot; Carlton</span></div>
+  </div>
+</footer>
+
+<div id="modal" role="dialog" aria-modal="true">
+  <div class="mcard" style="position:relative">
+    <button class="mclose" id="mclose" aria-label="Close">&times;</button>
+    <h3 id="mtitle">Book a <em>private tour</em></h3>
+    <p class="sub">Tell us when you train. We reply the same day.</p>
+    <form id="bookForm" class="f">
+      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" required placeholder="Your name"></div>
+      <div class="field"><label for="f-phone">Phone or email</label><input id="f-phone" name="contact" required placeholder="07... or you@email.com"></div>
+      <div class="field"><label for="f-type">I am interested in</label>
+        <select id="f-type" name="type">
+          <option>Private tour</option><option>Day pass</option><option>Membership info</option><option>Personal training</option>
+        </select></div>
+      <div class="field"><label for="f-when">Preferred day &amp; time</label><input id="f-when" name="when" placeholder="e.g. Thursday evening"></div>
+      <div class="field"><label for="f-note">Anything else</label><textarea id="f-note" name="note" placeholder="Goals, experience, questions..."></textarea></div>
+      <button class="btn primary" type="submit" style="justify-content:center">Send request</button>
+    </form>
+    <div class="ok" id="okPanel">
+      <b>Request ready</b>
+      <p id="okTxt">Tap below to send it straight to the gym.</p>
+      <a id="okCall" href="tel:tel:07817843126">Call 07817 843 126</a>
+      <a id="okIg" href="https://www.instagram.com/paradigm_gym/" target="_blank" rel="noopener">Message on Instagram</a>
+      <a id="okMail" href="https://paradigmgym.co.uk/contact">Contact the gym</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var intro = document.getElementById("intro"), body = document.body;
+  function lift(){
+    if(!intro || intro.classList.contains("done")) return;
+    intro.classList.add("done"); body.classList.remove("locked");
+    setTimeout(function(){ intro.style.display = "none"; }, 950);
+  }
+  var timer = setTimeout(lift, reduce ? 350 : 2350);
+  var eb = document.getElementById("enterBtn");
+  if(eb) eb.addEventListener("click", function(){ clearTimeout(timer); lift(); });
+
+  var nav = document.getElementById("nav");
+  function onScroll(){ nav.classList.toggle("solid", window.scrollY > 40); }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+  if("IntersectionObserver" in window && !reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:.12});
+    document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll(".rv").forEach(function(el){ el.classList.add("in"); });
+  }
+
+  var modal = document.getElementById("modal"), form = document.getElementById("bookForm"), ok = document.getElementById("okPanel");
+  var mtitle = document.getElementById("mtitle");
+  function open(kind){
+    mtitle.innerHTML = kind === "day" ? "Request a <em>day pass</em>" : "Book a <em>private tour</em>";
+    var sel = document.getElementById("f-type");
+    if(sel) sel.value = kind === "day" ? "Day pass" : "Private tour";
+    modal.classList.add("open"); body.classList.add("locked");
+    form.style.display = "grid"; ok.classList.remove("show");
+  }
+  function close(){ modal.classList.remove("open"); body.classList.remove("locked"); }
+  document.querySelectorAll("[data-book]").forEach(function(b){ b.addEventListener("click", function(e){ e.preventDefault(); open("tour"); }); });
+  document.querySelectorAll("[data-pass]").forEach(function(b){ b.addEventListener("click", function(e){ e.preventDefault(); open("day"); }); });
+  document.getElementById("mclose").addEventListener("click", close);
+  modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+  window.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var n = document.getElementById("f-name").value.trim() || "there";
+    document.getElementById("okTxt").textContent = "Thanks " + n + " - send it across and the team will reply the same day.";
+    form.style.display = "none"; ok.classList.add("show");
+  });
+
+  var yr = document.getElementById("yr");
+  if(yr) yr.textContent = new Date().getFullYear();
+
+  var im = document.createElement("script");
+  im.type = "importmap";
+  im.textContent = JSON.stringify({imports:{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}});
+  document.head.appendChild(im);
+  var m = document.createElement("script");
+  m.type = "module";
+  m.textContent = `
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const stage = document.getElementById('stage');
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+} catch (e) {
+  document.getElementById('stagefb').style.display = 'grid';
+  stage.style.display = 'none';
+  throw e;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(stage.clientWidth, stage.clientHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, stage.clientWidth / stage.clientHeight, 0.1, 100);
+camera.position.set(0, 0.15, 6.4);
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+
+const ACCENT = new THREE.Color('#1E5C43');
+const ACCENT2 = new THREE.Color('#C45A3A');
+const DEEP = new THREE.Color('#07130D');
+
+/* lighting: cinematic 3-point */
+const key = new THREE.DirectionalLight(0xffffff, 2.6);
+key.position.set(4, 6, 5);
+scene.add(key);
+const rim = new THREE.PointLight(ACCENT, 90, 24, 2);
+rim.position.set(-4.2, 1.6, -3.2);
+scene.add(rim);
+const rim2 = new THREE.PointLight(ACCENT2, 55, 22, 2);
+rim2.position.set(4.4, -2.4, -2.4);
+scene.add(rim2);
+const fill = new THREE.HemisphereLight(DEEP.getHex(), 0x050505, 0.55);
+scene.add(fill);
+
+/* materials */
+const chrome = new THREE.MeshPhysicalMaterial({ color: 0xf4f4f5, metalness: 1, roughness: 0.12, envMapIntensity: 1.5, clearcoat: 1, clearcoatRoughness: 0.08 });
+const steel  = new THREE.MeshPhysicalMaterial({ color: 0x3a3a3e, metalness: 0.95, roughness: 0.32, envMapIntensity: 1.1 });
+const accentM = new THREE.MeshPhysicalMaterial({ color: ACCENT, metalness: 0.85, roughness: 0.25, emissive: ACCENT, emissiveIntensity: 0.35, envMapIntensity: 1.2 });
+const rubber = new THREE.MeshStandardMaterial({ color: 0x141416, metalness: 0.2, roughness: 0.85 });
+
+const group = new THREE.Group();
+scene.add(group);
+
+/* ---- action rig: sweat spray, impact shake, heavy-steel grain, contact shadow ---- */
+const acts = [];
+let shake = 0;
+function noiseTex() {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const g = c.getContext('2d'); const d = g.createImageData(128, 128);
+  for (let i = 0; i < d.data.length; i += 4) { const v = 110 + (Math.random() * 90 | 0); d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+  g.putImageData(d, 0, 0);
+  const tx = new THREE.CanvasTexture(c); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(3, 3);
+  return tx;
+}
+const grain = noiseTex();
+chrome.bumpMap = grain; chrome.bumpScale = 0.0016;
+steel.bumpMap = grain; steel.bumpScale = 0.0032;
+
+const SW = 300;
+const swPos = new Float32Array(SW * 3), swVel = new Float32Array(SW * 3), swCol = new Float32Array(SW * 3);
+const swLife = new Float32Array(SW), swMax = new Float32Array(SW), swBase = new Float32Array(SW * 3);
+for (let i = 0; i < SW; i++) { swPos[i * 3 + 1] = -99; }
+const swGeo = new THREE.BufferGeometry();
+swGeo.setAttribute('position', new THREE.BufferAttribute(swPos, 3));
+swGeo.setAttribute('color', new THREE.BufferAttribute(swCol, 3));
+const swMat = new THREE.PointsMaterial({ size: 0.05, vertexColors: true, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+const swPts = new THREE.Points(swGeo, swMat);
+scene.add(swPts);
+let swI = 0;
+const whiteC = new THREE.Color(0xffffff);
+function spray(ox, oy, oz, count, power, biasX, biasY) {
+  for (let k = 0; k < count; k++) {
+    const i = swI; swI = (swI + 1) % SW;
+    swPos[i * 3] = ox + (Math.random() - 0.5) * 0.1;
+    swPos[i * 3 + 1] = oy + (Math.random() - 0.5) * 0.1;
+    swPos[i * 3 + 2] = oz + (Math.random() - 0.5) * 0.1;
+    const a = Math.random() * Math.PI * 2, r = Math.random();
+    swVel[i * 3] = Math.cos(a) * r * power + (biasX || 0) * power * 0.6;
+    swVel[i * 3 + 1] = (biasY !== undefined ? biasY : 1) * (0.5 + Math.random() * 0.9) * power;
+    swVel[i * 3 + 2] = Math.sin(a) * r * power * 0.5;
+    swMax[i] = swLife[i] = 0.5 + Math.random() * 0.55;
+    const c = Math.random() < 0.3 ? ACCENT : whiteC;
+    swBase[i * 3] = c.r; swBase[i * 3 + 1] = c.g; swBase[i * 3 + 2] = c.b;
+  }
+}
+function updateSpray(dt) {
+  for (let i = 0; i < SW; i++) {
+    if (swLife[i] <= 0) { swPos[i * 3 + 1] = -99; swCol[i * 3] = swCol[i * 3 + 1] = swCol[i * 3 + 2] = 0; continue; }
+    swLife[i] -= dt;
+    swPos[i * 3] += swVel[i * 3] * dt;
+    swPos[i * 3 + 1] += swVel[i * 3 + 1] * dt;
+    swPos[i * 3 + 2] += swVel[i * 3 + 2] * dt;
+    swVel[i * 3 + 1] -= 5.2 * dt;
+    const f = Math.max(0, swLife[i] / swMax[i]);
+    swCol[i * 3] = swBase[i * 3] * f;
+    swCol[i * 3 + 1] = swBase[i * 3 + 1] * f;
+    swCol[i * 3 + 2] = swBase[i * 3 + 2] * f;
+  }
+  swGeo.attributes.position.needsUpdate = true;
+  swGeo.attributes.color.needsUpdate = true;
+}
+/* lighting polish: equipment must read clearly */
+renderer.toneMappingExposure = (renderer.toneMappingExposure || 1) * 1.2;
+steel.color.set(0x5a5e64); steel.roughness = 0.3; steel.envMapIntensity = 1.4;
+const key2 = new THREE.DirectionalLight(0xffffff, 1.2);
+key2.position.set(-3.5, 2.4, 6.5); scene.add(key2);
+const kick = new THREE.PointLight(ACCENT, 70, 18, 2);
+kick.position.set(2.8, -1.1, 3.8); scene.add(kick);
+
+(function () {
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const g = c.getContext('2d');
+  const rg = g.createRadialGradient(128, 128, 8, 128, 128, 124);
+  rg.addColorStop(0, 'rgba(0,0,0,0.85)'); rg.addColorStop(0.55, 'rgba(0,0,0,0.32)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
+  g.fillStyle = rg; g.fillRect(0, 0, 256, 256);
+  const t = new THREE.CanvasTexture(c);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(3.8, 3.8), new THREE.MeshBasicMaterial({ map: t, transparent: true, opacity: 0.8, depthWrite: false }));
+  m.rotation.x = -Math.PI / 2; m.position.y = -1.36; scene.add(m);
+})();
+
+
+
+/* HEAVY LEG PRESS - sled on steel rails, loaded plates */
+const lp = new THREE.Group();
+const base = new THREE.Mesh(new THREE.BoxGeometry(1.14, 0.14, 1.95), steel);
+base.position.y = -1.22; lp.add(base);
+[-0.52, 0.52].forEach((x) => {
+  const side = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.52, 1.7), steel);
+  side.position.set(x, -0.95, 0); lp.add(side);
+  const rail = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 1.78, 18), accentM);
+  rail.rotation.x = Math.PI / 2; rail.position.set(x, -0.6, 0); lp.add(rail);
+});
+const stop = new THREE.Mesh(new THREE.BoxGeometry(1.18, 0.52, 0.12), steel);
+stop.position.set(0, -0.52, -0.88); stop.rotation.x = -0.18; lp.add(stop);
+const seat = new THREE.Mesh(new THREE.BoxGeometry(0.64, 0.13, 0.56), rubber);
+seat.position.set(0, -0.74, -0.52); seat.rotation.x = 0.26; lp.add(seat);
+const backr = new THREE.Mesh(new THREE.BoxGeometry(0.64, 0.68, 0.1), rubber);
+backr.position.set(0, -0.36, -0.76); backr.rotation.x = -0.5; lp.add(backr);
+
+const sled = new THREE.Group();
+const plate = new THREE.Mesh(new THREE.BoxGeometry(1.06, 0.86, 0.1), chrome);
+sled.add(plate);
+const foot = new THREE.Mesh(new THREE.BoxGeometry(0.94, 0.68, 0.05), steel);
+foot.position.set(0, -0.02, 0.1); foot.rotation.x = -0.2; sled.add(foot);
+[-0.64, 0.64].forEach((x) => {
+  const sleeve = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.4, 16), chrome);
+  sleeve.rotation.z = Math.PI / 2; sleeve.position.set(x, 0.06, 0); sled.add(sleeve);
+  for (let k = 0; k < 3; k++) {
+    const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.34 - k * 0.02, 0.34 - k * 0.02, 0.055, 36), k === 1 ? accentM : rubber);
+    disc.rotation.z = Math.PI / 2;
+    disc.position.set(x + (x > 0 ? 1 : -1) * (0.1 + k * 0.062), 0.06, 0);
+    sled.add(disc);
+  }
+});
+sled.rotation.x = -0.55;
+sled.position.set(0, -0.34, 0.42);
+lp.add(sled);
+lp.rotation.x = -0.16;
+group.add(lp);
+
+let prevP = 0;
+acts.push((t, dt) => {
+  const cyc = 3.1;
+  const ph = (t % cyc) / cyc;
+  const push = ph < 0.45 ? ph / 0.45 : 1 - (ph - 0.45) / 0.55;
+  const e = push * push * (3 - 2 * push);
+  sled.position.z = 0.42 - e * 0.62;
+  sled.position.y = -0.34 + e * 0.16;
+  lp.position.x = Math.sin(t * 13) * 0.003 * (e > 0.8 ? 1 : 0);
+  if (ph < prevP) {
+    shake = Math.max(shake, 0.045);
+    spray(0.55, -0.05, 0.72, 18, 1.6, 0.55, 0.6);
+    spray(-0.55, -0.05, 0.72, 18, 1.6, -0.55, 0.6);
+  }
+  prevP = ph;
+});
+group.scale.setScalar(0.95);
+
+
+/* particle atmosphere */
+const pGeo = new THREE.BufferGeometry();
+const N = 900;
+const pos = new Float32Array(N * 3);
+for (let i = 0; i < N; i++) {
+  pos[i*3]   = (Math.random() - 0.5) * 18;
+  pos[i*3+1] = (Math.random() - 0.5) * 12;
+  pos[i*3+2] = (Math.random() - 0.5) * 9 - 1;
+}
+pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+const pMat = new THREE.PointsMaterial({ color: ACCENT, size: 0.028, transparent: true, opacity: 0.5, depthWrite: false, blending: THREE.AdditiveBlending });
+const pts = new THREE.Points(pGeo, pMat);
+scene.add(pts);
+const pMat2 = new THREE.PointsMaterial({ color: 0xffffff, size: 0.016, transparent: true, opacity: 0.28, depthWrite: false, blending: THREE.AdditiveBlending });
+const pts2 = new THREE.Points(pGeo.clone(), pMat2);
+scene.add(pts2);
+
+/* pointer + drag */
+let px = 0, py = 0, tx = 0, ty = 0, vy = 0;
+let dragging = false, lastX = 0, spin = 0;
+const hero = document.getElementById('top');
+hero.addEventListener('pointermove', (e) => {
+  const r = hero.getBoundingClientRect();
+  tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+  ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+  if (dragging) { spin += (e.clientX - lastX) * 0.006; lastX = e.clientX; }
+});
+hero.addEventListener('pointerdown', (e) => { dragging = true; lastX = e.clientX; });
+addEventListener('pointerup', () => { dragging = false; });
+hero.addEventListener('touchmove', (e) => {
+  const r = hero.getBoundingClientRect();
+  tx = ((e.touches[0].clientX - r.left) / r.width - 0.5) * 2;
+  ty = ((e.touches[0].clientY - r.top) / r.height - 0.5) * 2;
+}, { passive: true });
+
+let visible = true;
+new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(hero);
+document.addEventListener('visibilitychange', () => { visible = !document.hidden; });
+
+const clock = new THREE.Clock();
+function tick() {
+  requestAnimationFrame(tick);
+  if (!visible) return;
+  const t = clock.getElapsedTime();
+  const dt = Math.min(0.05, t - (window.__lt !== undefined ? window.__lt : t)); window.__lt = t;
+  px += (tx - px) * 0.045;
+  py += (ty - py) * 0.045;
+  spin *= dragging ? 0.94 : 0.965;
+  group.rotation.y = t * 0.05 + px * 0.4 + spin;
+  group.rotation.x = py * 0.1 + Math.sin(t * 0.4) * 0.015;
+  for (let ai = 0; ai < acts.length; ai++) acts[ai](t, dt);
+  updateSpray(dt);
+  const wantX = (stage.clientWidth || 1200) > 900 ? 1.12 : 0;
+  group.position.x += (wantX - group.position.x) * 0.06;
+  shake *= 0.9;
+  camera.position.x = (Math.random() - 0.5) * shake;
+  camera.position.y = 0.12 + (Math.random() - 0.5) * shake * 0.6;
+  pts.rotation.y = t * 0.02;
+  pts2.rotation.y = -t * 0.016;
+  pts.position.y = Math.sin(t * 0.18) * 0.4;
+  pts2.position.y = Math.cos(t * 0.14) * 0.5;
+  renderer.render(scene, camera);
+}
+tick();
+
+addEventListener('resize', () => {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+`;
+  document.body.appendChild(m);
+})();
+</script>
+</body>
+</html>
