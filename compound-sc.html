@@ -5,327 +5,373 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compound Strength &amp; Conditioning &mdash; Ruddington, Nottingham</title>
 <meta name="description" content="Independent, coach-led strength and conditioning gym in Ruddington, Nottingham. Owned and run by three local coaches.">
-<meta name="theme-color" content="#0C0D0E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0C0D0E; --panel:#121315; --line:rgba(255,255,255,.09);
-  --ink:#F3F1EC; --muted:#9B978F; --acc:#A31C18; --acc2:#C9A46A;
-  --forest:#0B1F17; --serif:'Playfair Display',Georgia,serif;
-}
+:root{--bg:#0A0A0A;--ink:#F2F0EB;--mut:#86817A;--line:rgba(255,255,255,.14);--red:#C0504D;--neon:#7CE86A;--vio:#9370DB;--panel:#0E0E0E}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.65 Archivo,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body.locked{overflow:hidden}
-::selection{background:var(--acc);color:#fff}
-h1,h2,h3{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.02}
-em{font-family:var(--serif);font-style:italic;font-weight:500}
+.serif{font-family:"Playfair Display",Georgia,serif}
+::selection{background:var(--red);color:#fff}
 a{color:inherit;text-decoration:none}
-img{max-width:100%}
-.wrap{width:min(1180px,92vw);margin-inline:auto}
-.k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--acc2);display:flex;align-items:center;gap:12px}
-.k:before{content:"";width:26px;height:1px;background:var(--acc);display:block}
-.lead{color:var(--muted);max-width:56ch}
+img{display:block;max-width:100%}
+.w{width:min(1240px,92vw);margin-inline:auto}
 
-/* ---------- cinematic intro ---------- */
-#intro{position:fixed;inset:0;z-index:200;background:#090A0B;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity .9s ease,filter .9s ease,transform .9s ease}
-#intro.done{opacity:0;filter:blur(14px);transform:scale(1.06);pointer-events:none}
-.smoke{position:absolute;inset:-20%;filter:blur(60px);opacity:.85;pointer-events:none}
-.smoke i{position:absolute;border-radius:50%;mix-blend-mode:screen;animation:drift 9s ease-in-out infinite alternate}
-.smoke i:nth-child(1){width:46vw;height:46vw;left:6%;top:12%;background:radial-gradient(circle,rgba(163,28,24,.34),transparent 65%)}
-.smoke i:nth-child(2){width:52vw;height:52vw;right:2%;bottom:4%;background:radial-gradient(circle,rgba(20,64,45,.4),transparent 65%);animation-delay:-3s}
-.smoke i:nth-child(3){width:30vw;height:30vw;left:38%;top:44%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 70%);animation-delay:-6s}
-@keyframes drift{from{transform:translate3d(-3%,2%,0) scale(1)}to{transform:translate3d(4%,-3%,0) scale(1.12)}}
-#intro .grain{position:absolute;inset:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
-.intro-in{position:relative;text-align:center;padding:0 6vw}
-.intro-in .est{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
-.intro-in h1{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(40px,8vw,96px);line-height:.98;background:linear-gradient(180deg,#FFFFFF 0%,#D9D6D0 38%,#7E7B76 62%,#F2EFE9 78%,#6E6B66 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.01em;filter:drop-shadow(0 24px 60px rgba(0,0,0,.85))}
-.intro-in .tag{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--acc2);margin-top:18px}
-.loadbar{position:relative;width:min(280px,56vw);height:1px;background:rgba(255,255,255,.14);overflow:hidden}
-.loadbar i{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--acc),var(--acc2));transform:scaleX(0);transform-origin:left;animation:load 2.1s cubic-bezier(.7,0,.2,1) forwards}
-@keyframes load{to{transform:scaleX(1)}}
-.intro-enter{position:relative;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:0;font-family:Archivo,sans-serif}
-.intro-enter:hover{color:var(--ink)}
+/* intro */
+#intro{position:fixed;inset:0;z-index:200;background:#080808;display:grid;place-items:center;transition:opacity .9s ease,filter .9s ease;overflow:hidden}
+#intro:after{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 30% 60%,rgba(192,80,77,.16),transparent 60%),radial-gradient(50% 45% at 72% 40%,rgba(124,232,106,.1),transparent 60%);filter:blur(30px)}
+#intro.done{opacity:0;filter:blur(14px);pointer-events:none}
+.smoke i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:drift 9s ease-in-out infinite alternate}
+.smoke i:nth-child(1){width:46vw;height:46vw;left:-10vw;bottom:-18vw;background:radial-gradient(circle,rgba(192,80,77,.5),transparent 65%)}
+.smoke i:nth-child(2){width:40vw;height:40vw;right:-8vw;top:-12vw;background:radial-gradient(circle,rgba(124,232,106,.32),transparent 65%);animation-delay:-3s}
+.smoke i:nth-child(3){width:34vw;height:34vw;right:18vw;bottom:-14vw;background:radial-gradient(circle,rgba(147,112,219,.35),transparent 65%);animation-delay:-6s}
+@keyframes drift{to{transform:translate3d(4vw,-3vw,0) scale(1.12)}}
+.iin{position:relative;z-index:2;text-align:center;padding:0 6vw}
+.iin .est{font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--mut)}
+.iin h1{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(2.6rem,8vw,6rem);line-height:1;margin:18px 0 10px;background:linear-gradient(180deg,#fff 20%,#b9b4ac);-webkit-background-clip:text;background-clip:text;color:transparent}
+.iin p2{display:block;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#9a958d}
+.iline{width:min(320px,60vw);height:1px;background:rgba(255,255,255,.16);margin:34px auto 16px;position:relative;overflow:hidden}
+.iline b{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--red),transparent);transform:translateX(-100%);animation:load 2.2s ease forwards}
+@keyframes load{to{transform:translateX(0)}}
+.ienter{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#c9c4bb;background:none;border:0;cursor:pointer;font-family:inherit}
+.ienter:hover{color:#fff}
 
-/* ---------- nav ---------- */
-nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:22px 4vw;transition:background .4s,padding .4s,border-color .4s;border-bottom:1px solid transparent}
-nav.solid{background:rgba(10,11,12,.82);backdrop-filter:blur(18px);padding:14px 4vw;border-color:var(--line)}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.16em;font-size:13px;text-transform:uppercase}
-.brand i{width:26px;height:26px;border:1px solid var(--acc);transform:rotate(45deg);display:grid;place-items:center}
-.brand i:after{content:"";width:8px;height:8px;background:var(--acc);box-shadow:0 0 14px var(--acc)}
-.nl{display:flex;gap:30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.nl a:hover{color:var(--ink)}
-.nr{display:flex;align-items:center;gap:16px}
-.tel{font-size:12px;letter-spacing:.1em;color:var(--muted)}
-.tel:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 26px;font:600 12px/1 Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
-.btn.primary{background:linear-gradient(120deg,var(--acc),color-mix(in srgb,var(--acc) 70%,#000));color:#fff;box-shadow:0 14px 40px color-mix(in srgb,var(--acc) 35%,transparent)}
-.btn.primary:hover{transform:translateY(-2px);box-shadow:0 20px 55px color-mix(in srgb,var(--acc) 45%,transparent)}
-.btn.ghost{border-color:rgba(255,255,255,.22);color:var(--ink);background:transparent}
-.btn.ghost:hover{border-color:var(--acc2);background:rgba(255,255,255,.04)}
-.btn.sm{padding:11px 20px}
+/* header */
+.top{position:fixed;top:0;left:0;right:0;z-index:90;padding:20px 0;background:linear-gradient(180deg,rgba(10,10,10,.9),rgba(10,10,10,0));backdrop-filter:blur(0);transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+.top.solid{background:rgba(10,10,10,.86);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.top .w{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mono{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+.mono i{width:10px;height:10px;border:1px solid var(--red);transform:rotate(45deg);display:inline-block}
+nav.mid{display:flex;gap:26px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--mut)}
+nav.mid a{position:relative;padding-bottom:6px;transition:color .3s}
+nav.mid a:hover,nav.mid a.on{color:var(--ink)}
+nav.mid a.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--red)}
+.pill{border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:border-color .3s,background .3s;white-space:nowrap}
+.pill:hover{border-color:var(--red);background:rgba(192,80,77,.1)}
+.pill.solid{background:var(--ink);color:#0A0A0A;border-color:var(--ink);font-weight:600}
+.pill.solid:hover{background:#fff}
 
-/* ---------- hero ---------- */
-.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:2vw;padding:120px 4vw 70px;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:
-  radial-gradient(60% 55% at 78% 46%,color-mix(in srgb,var(--acc) 16%,transparent),transparent 70%),
-  radial-gradient(45% 45% at 12% 88%,rgba(11,31,23,.55),transparent 70%),
-  linear-gradient(180deg,#0A0B0C,#0C0D0E);z-index:0}
-.hero>*{position:relative;z-index:1}
-#stage{position:absolute;inset:0;z-index:0;cursor:grab}
-#stage:active{cursor:grabbing}
-.stage-fallback{position:absolute;inset:0;z-index:0;background:radial-gradient(50% 60% at 70% 50%,color-mix(in srgb,var(--acc) 30%,transparent),transparent 70%)}
-.hero-copy{padding-left:2vw;max-width:620px}
-.hero .k{margin-bottom:22px}
-.hero h1{font-size:clamp(44px,6.6vw,92px);line-height:.94;letter-spacing:-.03em;margin-bottom:26px;text-transform:uppercase}
-.hero h1 em{display:block;font-size:.92em;color:var(--acc2);text-transform:none;letter-spacing:0}
-.hero p.lead{margin-bottom:34px;font-size:17px}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px}
-.hmeta{display:flex;gap:30px;flex-wrap:wrap;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.hmeta b{display:block;color:var(--ink);font-weight:500;letter-spacing:.06em;margin-top:6px;font-size:12px}
-.scrollh{position:absolute;bottom:26px;left:4vw;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;z-index:2}
-.scrollh:after{content:"";width:44px;height:1px;background:linear-gradient(90deg,var(--acc),transparent);animation:pulse 2.4s infinite}
-@keyframes pulse{50%{opacity:.35}}
+/* hero */
+.hero{padding:118px 0 0;position:relative}
+.strip{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--mut)}
+.strip b{color:var(--ink);font-weight:500;position:relative;padding-bottom:4px;cursor:default}
+.strip b.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--red)}
+.strip .sp{flex:1}
+.strip .dot{opacity:.4}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:4vw;align-items:center;padding:56px 0 40px}
+.k{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);display:flex;gap:12px;align-items:center}
+.k:before{content:"";width:26px;height:1px;background:var(--red)}
+h1{font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:.98;letter-spacing:-.015em;margin:22px 0 20px;text-transform:uppercase;font-weight:700}
+h1 em{display:block;font-family:"Playfair Display",serif;font-style:italic;font-weight:500;text-transform:none;color:var(--red);letter-spacing:-.01em}
+.sub{max-width:46ch;color:#b8b3aa;font-size:15px;line-height:1.75}
+.sub em{font-family:"Playfair Display",serif;color:var(--red);font-style:italic}
+.cta{display:flex;gap:12px;margin:30px 0 34px;flex-wrap:wrap}
+.btn{border:0;cursor:pointer;font-family:inherit;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;padding:15px 26px;border-radius:999px;transition:transform .3s,box-shadow .3s,background .3s,color .3s}
+.btn.solid{background:var(--red);color:#fff}
+.btn.solid:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(192,80,77,.32)}
+.btn.ghostb{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghostb:hover{border-color:var(--ink)}
+.numrow{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-top:1px solid var(--line);padding-top:24px}
+.big b{display:block;font-size:clamp(2rem,3.4vw,3rem);font-weight:300;letter-spacing:-.02em;line-height:1}
+.big span{display:block;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin-top:8px}
+.dots{display:flex;gap:10px}
+.dots a{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:border-color .3s,background .3s,transform .3s}
+.dots a:hover{border-color:var(--red);background:rgba(192,80,77,.12);transform:translateY(-3px)}
+.dots svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.3}
+.heroart{position:relative;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#0c0c0c}
+.heroart img{width:100%;height:clamp(340px,46vw,520px);object-fit:cover;filter:contrast(1.08) saturate(.92);opacity:.95}
+.wash{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen}
+.wash.g{background:radial-gradient(46% 60% at 20% 62%,rgba(124,232,106,.28),transparent 62%)}
+.wash.v{background:radial-gradient(44% 58% at 82% 40%,rgba(147,112,219,.3),transparent 64%)}
+.heroart figcaption{position:absolute;left:16px;bottom:14px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#cfcac1}
+.vl{position:absolute;top:16px;font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:#a9a49b;writing-mode:vertical-rl}
+.vl.l{left:12px;transform:rotate(180deg)}
+.vl.r{right:12px}
 
-/* ---------- marquee ---------- */
-.mq{border-block:1px solid var(--line);overflow:hidden;background:#0A0B0C;padding:16px 0}
-.mqt{display:flex;gap:40px;white-space:nowrap;animation:slide 26s linear infinite;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-.mqt b{color:var(--acc)}
-@keyframes slide{to{transform:translateX(-50%)}}
+/* band */
+.band{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:26px;overflow:hidden}
+.band img{width:100%;height:clamp(200px,26vw,320px);object-fit:cover;opacity:.82}
+.band .cap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:space-between;padding:18px 22px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#d3cec5}
+.band .gl{position:absolute;inset:0;background:radial-gradient(50% 80% at 78% 30%,rgba(147,112,219,.22),transparent 60%),radial-gradient(40% 70% at 18% 70%,rgba(124,232,106,.18),transparent 65%)}
 
-/* ---------- sections ---------- */
-section{padding:110px 0}
-.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:54px;flex-wrap:wrap}
-.sec-h h2{font-size:clamp(30px,4.2vw,54px);text-transform:uppercase}
-.sec-h h2 em{color:var(--acc2);text-transform:none}
-.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.card{position:relative;border:1px solid var(--line);border-radius:18px;padding:34px 30px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:transform .4s,border-color .4s,box-shadow .4s;overflow:hidden}
-.card:before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 0% 0%,color-mix(in srgb,var(--acc) 14%,transparent),transparent 60%);opacity:0;transition:opacity .4s}
-.card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--acc) 45%,transparent);box-shadow:0 24px 60px rgba(0,0,0,.5)}
-.card:hover:before{opacity:1}
-.card b{font-size:11px;letter-spacing:.24em;color:var(--acc2)}
-.card h3{font-size:23px;margin:14px 0 10px;text-transform:uppercase;letter-spacing:-.01em}
-.card p{color:var(--muted);font-size:14.5px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.stat{background:#0D0E10;padding:36px 28px}
-.stat b{display:block;font-size:clamp(28px,3.4vw,44px);font-weight:700;letter-spacing:-.02em}
-.stat span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
-.tt{width:100%;border-collapse:collapse;font-size:14.5px}
-.tt th{text-align:left;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);padding:0 18px 16px;font-weight:500;border-bottom:1px solid var(--line)}
-.tt td{padding:18px;border-bottom:1px solid rgba(255,255,255,.05)}
-.tt tr:hover td{background:rgba(255,255,255,.025)}
-.tt td.cl{color:var(--ink);font-weight:500}
-.tt td.lv{color:var(--acc2);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-.visit{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
-.visit .card{padding:44px 40px}
-.visit h3{font-size:clamp(26px,3vw,38px);margin-bottom:18px;text-transform:uppercase}
-.vrow{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14.5px}
-.vrow span{width:90px;flex:none;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding-top:3px}
-.vrow a:hover{color:var(--acc2)}
-.cta-card{display:flex;flex-direction:column;justify-content:space-between;gap:26px;background:linear-gradient(150deg,color-mix(in srgb,var(--acc) 22%,#0d0e10),#0B0D0E 65%)}
-.cta-card h3{font-size:clamp(26px,3vw,36px)}
-.cta-card p{color:#CFCBC3;font-size:14.5px}
-footer{border-top:1px solid var(--line);padding:54px 0 34px;background:#0A0B0C}
-.frow{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;margin-bottom:34px}
-.frow .fcol p{color:var(--muted);font-size:13.5px}
-.frow .fcol b{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
-.fbot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6B66;border-top:1px solid rgba(255,255,255,.06);padding-top:22px}
+/* blocks */
+.block{padding:74px 0;border-bottom:1px solid var(--line)}
+.bh{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:34px}
+.bh .k{margin-bottom:12px}
+.bh h2{font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;font-weight:700}
+.bh h2 em{font-family:"Playfair Display",serif;font-style:italic;text-transform:none;color:var(--red);font-weight:500}
+.bh p.lead{max-width:40ch;color:var(--mut);font-size:13.5px;line-height:1.7}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line)}
+.card{padding:26px 22px;border-right:1px solid var(--line);min-height:210px;display:flex;flex-direction:column;justify-content:space-between;transition:background .35s}
+.card:last-child{border-right:0}
+.card:hover{background:#0f0f0f}
+.card.hi{background:#141414}
+.card i{font-style:normal;font-size:9px;letter-spacing:.3em;color:var(--mut)}
+.card h3{font-size:14px;letter-spacing:.02em;margin:14px 0 10px;font-weight:500}
+.card p{font-size:12px;line-height:1.7;color:#918c84}
+.card .go{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);margin-top:16px}
 
-/* ---------- modal ---------- */
-#modal{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:20px;background:rgba(6,7,8,.72);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .35s}
+/* 3D panel */
+.panel3{border:1px solid var(--line);position:relative;background:radial-gradient(60% 80% at 70% 30%,rgba(20,20,20,.9),#0b0b0b)}
+.phead{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--mut)}
+#stage{width:100%;height:clamp(320px,42vw,470px)}
+#stage canvas{display:block}
+.hint{color:#6d6963}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:400}
+td{padding:15px 12px;border-bottom:1px solid rgba(255,255,255,.07);color:#cfcac1}
+td:first-child{color:var(--ink);letter-spacing:.06em;font-size:12px}
+tr:hover td{background:#0e0e0e}
+.tblwrap{overflow-x:auto}
+.latest{margin-top:26px;border:1px solid var(--line);padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:#0d0d0d}
+.latest .t{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--red)}
+.latest h3{font-size:clamp(1.2rem,2vw,1.6rem);margin-top:8px;font-weight:500}
+.latest p{color:var(--mut);font-size:12.5px;margin-top:6px}
+
+/* visit */
+.visit .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:4vw}
+.vlist{display:grid;gap:0;border-top:1px solid var(--line);margin-top:26px}
+.vrow{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px}
+.vrow b{font-weight:400;color:var(--mut);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase}
+.vcard{border:1px solid var(--line);padding:30px;background:linear-gradient(160deg,#101010,#0b0b0b);position:relative;overflow:hidden}
+.vcard:before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 80% 10%,rgba(124,232,106,.1),transparent 60%);pointer-events:none}
+.vcard h3{font-size:1.5rem;line-height:1.15;margin:12px 0 12px;font-weight:500}
+.vcard p{color:var(--mut);font-size:13px;line-height:1.7;margin-bottom:22px}
+footer{padding:40px 0 46px;text-align:center;color:#6f6a63;font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+footer .fname{font-family:"Playfair Display",serif;font-style:italic;text-transform:none;font-size:1.15rem;color:#b6b1a8;letter-spacing:0;margin-bottom:10px}
+footer a{color:#9a958d}
+footer .swap{width:38px;height:18px;border:1px solid var(--line);border-radius:999px;margin:0 auto 16px;position:relative}
+footer .swap:after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--red)}
+
+/* modal */
+#modal{position:fixed;inset:0;z-index:120;background:rgba(6,6,6,.8);backdrop-filter:blur(10px);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .4s}
 #modal.open{opacity:1;pointer-events:auto}
-.mcard{width:min(560px,100%);max-height:88svh;overflow:auto;background:#101113;border:1px solid var(--line);border-radius:22px;padding:38px 34px;transform:translateY(18px);transition:transform .35s}
+.mcard{width:min(520px,94vw);background:#0d0d0d;border:1px solid var(--line);padding:34px;position:relative;transform:translateY(16px);transition:transform .4s}
 #modal.open .mcard{transform:none}
-.mcard h3{font-size:26px;text-transform:uppercase;margin-bottom:8px}
-.mcard h3 em{color:var(--acc2)}
-.mcard .sub{color:var(--muted);font-size:14px;margin-bottom:26px}
-.f{display:grid;gap:16px}
-.field label{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:11px;padding:13px 15px;color:var(--ink);font:inherit;font-size:14px;outline:none;transition:border-color .25s,box-shadow .25s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 20%,transparent)}
-.field textarea{min-height:84px;resize:vertical}
-.mclose{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink);cursor:pointer;font-size:16px}
-.ok{display:none;text-align:center;padding:14px 0}
-.ok.show{display:block}
-.ok b{display:block;font-size:20px;margin-bottom:10px;text-transform:uppercase}
-.ok p{color:var(--muted);font-size:14px;margin-bottom:18px}
-.ok a{display:inline-block;margin:4px;padding:11px 20px;border:1px solid var(--line);border-radius:999px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-.ok a:hover{border-color:var(--acc2)}
+#mclose{position:absolute;top:14px;right:16px;background:none;border:1px solid var(--line);color:var(--ink);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;line-height:1}
+.mcard h3{font-size:1.55rem;line-height:1.15;margin:10px 0 18px;font-weight:500}
+.mcard h3 em{font-family:"Playfair Display",serif;color:var(--red);font-style:italic}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;background:#0a0a0a;border:1px solid var(--line);color:var(--ink);padding:12px 14px;font:inherit;font-size:13px;border-radius:2px;outline:none;transition:border-color .3s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--red)}
+.mcard .btn{width:100%;margin-top:8px}
+#okPanel{display:none;text-align:center;padding:14px 0}
+#okPanel.show{display:block}
+#okPanel h4{font-family:"Playfair Display",serif;font-size:1.3rem;margin-bottom:10px}
+#okPanel p{color:var(--mut);font-size:13px;line-height:1.7;margin-bottom:18px}
 
-/* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
-
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.smoke i{animation:none}}
 @media(max-width:980px){
-  .hero{grid-template-columns:1fr;padding-top:104px;min-height:auto}
-  #stage{position:relative;height:46svh;min-height:320px;order:2}
-  .stage-fallback{display:none}
-  .hero-copy{padding-left:0;order:1;max-width:none}
-  .grid4,.visit{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr 1fr}
-  .nl{display:none}
-  section{padding:76px 0}
-  .tt th:nth-child(4),.tt td:nth-child(4){display:none}
+ .hero-grid{grid-template-columns:1fr;gap:34px;padding:40px 0 30px}
+ .hero{padding-top:96px}
+ nav.mid{display:none}
+ .grid4{grid-template-columns:1fr 1fr}
+ .card:nth-child(2n){border-right:0}
+ .card{border-bottom:1px solid var(--line);min-height:auto}
+ .card:nth-last-child(-n+2){border-bottom:0}
+ .visit .cols{grid-template-columns:1fr;gap:28px}
+ .strip{font-size:8.5px;gap:12px}
+ .heroart img{height:clamp(280px,62vw,420px)}
+ #stage{height:340px}
+ .big b{font-size:2rem}
+ .numrow{flex-wrap:wrap;gap:16px}
 }
-@media(prefers-reduced-motion:reduce){
-  .smoke i,.mqt{animation:none}
-  .rv{opacity:1;transform:none;transition:none}
+@media(max-width:560px){
+ .grid4{grid-template-columns:1fr}
+ .card{border-right:0}
+ .cta .btn{flex:1;text-align:center}
 }
 </style>
 </head>
 <body class="locked">
 
-<div id="intro" aria-hidden="true">
+<div id="intro">
   <div class="smoke"><i></i><i></i><i></i></div>
-  <div class="grain"></div>
-  <div class="intro-in">
-    <p class="est">Est. Ruddington &nbsp;&middot;&nbsp; Ruddington, Nottingham</p>
-    <h1>Compound</h1>
-    <p class="tag">Strength &amp; conditioning &middot; Coach-led</p>
+  <div class="iin">
+    <p class="est">Strength &amp; conditioning &middot; Coach-led</p>
+    <h1 class="serif">Compound</h1>
+    <span class="p2">Ruddington, Nottingham &middot; Est. Ruddington</span>
+    <div class="iline"><b></b></div>
+    <button class="ienter" id="enterBtn">Enter the floor</button>
   </div>
-  <div class="loadbar"><i></i></div>
-  <button class="intro-enter" id="enterBtn">Enter the floor</button>
 </div>
 
-<nav id="nav">
-  <a class="brand" href="#top"><i></i>Compound</a>
-  <div class="nl">
-    <a href="#floor">The Floor</a><a href="#timetable">Timetable</a><a href="#visit">Visit</a>
+<header class="top" id="nav">
+  <div class="w">
+    <a class="mono" href="#top"><i></i>Compound</a>
+    <nav class="mid">
+      <a href="#floor" class="on">The Floor</a>
+      <a href="#motion">In Motion</a>
+      <a href="#timetable">Timetable</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="pill solid" href="#visit">Book a tour</a>
   </div>
-  <div class="nr">
-    <a class="tel" href="tel:tel:07495470874">07495 470874</a>
-    <button class="btn primary sm" data-book>Book a tour</button>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="stage-fallback" id="stagefb"></div>
-  <div id="stage"></div>
-  <div class="hero-copy">
-    <p class="k">Strength &amp; conditioning &middot; Coach-led</p>
-    <h1>Train like<em>it matters.</em></h1>
-    <p class="lead">An independent strength and conditioning gym in Ruddington, owned and run by three coaches who actually coach. Functional kit, programmed sessions and a room built for people who want to get measurably better.</p>
-    <div class="cta-row">
-      <button class="btn primary" data-book>Book a private tour</button>
-      <button class="btn ghost" data-pass>Day pass &middot; drop in</button>
-    </div>
-    <div class="hmeta">
-      <div><span>Training floor</span><b>Coach-led</b></div>
-      <div><span>Open</span><b>7 days</b></div>
-      <div><span>Find us</span><b>Ruddington, Nottingham</b></div>
-    </div>
-  </div>
-  <div class="scrollh">Scroll</div>
 </header>
 
-<div class="mq" aria-hidden="true"><div class="mqt"><span>Strength</span><b>&#9670;</b><span>Conditioning</span><b>&#9670;</b><span>Hyrox prep</span><b>&#9670;</b><span>Ruddington</span><b>&#9670;</b><span>Coach-run</span><b>&#9670;</b><span>Strength</span><b>&#9670;</b><span>Conditioning</span><b>&#9670;</b><span>Hyrox prep</span><b>&#9670;</b><span>Ruddington</span><b>&#9670;</b><span>Coach-run</span><b>&#9670;</b></div></div>
+<section class="hero" id="top">
+  <div class="w">
+    <div class="strip">
+      <b class="on">Ruddington, Nottingham</b><span class="dot">&middot;</span>
+      <b>Sessions</b><span class="dot">&middot;</span><b>Kit</b><span class="dot">&middot;</span><b>Nottingham</b>
+      <span class="sp"></span>
+      <span class="pill" style="padding:6px 14px">Est. Ruddington</span>
+    </div>
 
-<section id="floor">
-  <div class="wrap">
-    <div class="sec-h rv">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="k rv">Strength &amp; conditioning &middot; Coach-led</p>
+        <h1 class="rv">Train like<em class="serif">it matters.</em></h1>
+        <p class="sub rv">An independent strength and conditioning gym in Ruddington, owned and run by three coaches who actually coach. Functional kit, programmed sessions and a room built for people who want to get measurably better.</p>
+        <div class="cta rv">
+          <button class="btn solid" data-book>Book a private tour</button>
+          <button class="btn ghostb" data-pass>Day pass</button>
+        </div>
+        <div class="numrow rv">
+          <div class="big"><b>3</b><span>Owner-coaches</span></div>
+          <div class="dots">
+            <a href="#floor" aria-label="The floor"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 4-4 2 2-4z"/></svg></a>
+            <a href="#visit" aria-label="Visit"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 10-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></a>
+            <a href="#motion" aria-label="In motion"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <figure class="heroart rv">
+        <img src="https://media.base44.com/images/public/6adb3835c9e2713e1bb0f21f/fd840c4bb_generated_image.png" alt="Compound training floor concept">
+        <div class="wash g"></div><div class="wash v"></div>
+        <span class="vl l">RUDDINGTON, NOTTINGHAM</span><span class="vl r">THE FLOOR</span>
+        <figcaption>Ruddington, Nottingham &middot; STRENGTH &AMP; CONDITIONING &MIDDOT; COACH-LED</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="band">
+    <img src="https://media.base44.com/images/public/6adb3835c9e2713e1bb0f21f/4dd2d91af_generated_image.png" alt="">
+    <div class="gl"></div>
+    <div class="cap"><span>Bars &middot; Plates &middot; Chalk</span><span>Est. Ruddington</span></div>
+  </div>
+</section>
+
+<section class="block" id="floor">
+  <div class="w">
+    <div class="bh">
       <div>
-        <p class="k">The floor</p>
-        <h2>Built for <em>heavy work.</em></h2>
+        <p class="k">01 &mdash; The Floor</p>
+        <h2>Built for <em class="serif">heavy work.</em></h2>
       </div>
       <p class="lead">Racks, rowers, sleds and barbells &mdash; arranged for real sessions, not Instagram photos.</p>
     </div>
-    <div class="grid4">
-      <article class="card rv"><b>01</b><h3>Programmed sessions</h3><p>Every class written and coached by the owners &mdash; no whiteboard roulette.</p></article>
-      <article class="card rv"><b>02</b><h3>Strength + engine</h3><p>Barbell work paired with sleds, rowers and carries so you build both.</p></article>
-      <article class="card rv"><b>03</b><h3>Small groups</h3><p>Enough attention to fix your positions, not so many that you get lost.</p></article>
-      <article class="card rv"><b>04</b><h3>Nutrition &amp; wellness</h3><p>Practical nutrition support and corporate wellness programmes alongside the gym floor.</p></article>
+    <div class="grid4 rv"><article class="card"><div><i>01</i><h3>Programmed sessions</h3><p>Every class written and coached by the owners &mdash; no whiteboard roulette.</p></div><span class="go">Explore</span></article><article class="card"><div><i>02</i><h3>Strength + engine</h3><p>Barbell work paired with sleds, rowers and carries so you build both.</p></div><span class="go">Explore</span></article><article class="card hi"><div><i>03</i><h3>Small groups</h3><p>Enough attention to fix your positions, not so many that you get lost.</p></div><span class="go">Explore</span></article><article class="card"><div><i>04</i><h3>Nutrition &amp; wellness</h3><p>Practical nutrition support and corporate wellness programmes alongside the gym floor.</p></div><span class="go">Explore</span></article></div>
+  </div>
+</section>
+
+<section class="block" id="motion">
+  <div class="w">
+    <div class="bh">
+      <div>
+        <p class="k">02 &mdash; In Motion</p>
+        <h2>Heavy kit, <em class="serif">in action.</em></h2>
+      </div>
+      <p class="lead">This is live 3D, not a photo. Drag it, tilt it, watch the load move.</p>
     </div>
-    <div class="stats rv" style="margin-top:18px">
-      <div class="stat"><b>3</b><span>Owner-coaches</span></div>
-      <div class="stat"><b>Daily</b><span>Sessions</span></div>
-      <div class="stat"><b>Functional</b><span>Kit</span></div>
-      <div class="stat"><b>Ruddington</b><span>Nottingham</span></div>
+    <div class="panel3 rv">
+      <div class="phead"><span>Three-dimensional floor</span><span class="hint">Drag to move</span></div>
+      <div id="stage"></div>
+      <div id="stagefb"></div>
     </div>
   </div>
 </section>
 
-<section id="timetable" style="padding-top:20px">
-  <div class="wrap">
-    <div class="sec-h rv">
+<section class="block" id="timetable">
+  <div class="w">
+    <div class="bh">
       <div>
-        <p class="k">The week</p>
-        <h2>Classes worth <em>turning up for.</em></h2>
+        <p class="k">03 &mdash; Timetable</p>
+        <h2>The week, <em class="serif">booked.</em></h2>
       </div>
-      <button class="btn ghost rv" data-book>Book your first session</button>
+      <p class="lead">Coach-led sessions on the floor. Members train open gym any time we are open.</p>
     </div>
-    <table class="tt rv">
-      <thead><tr><th>Day</th><th>Session</th><th>Time</th><th>Level</th></tr></thead>
-      <tbody><tr><td>Monday</td><td class=cl>Compound Conditioning</td><td>18:00</td><td class=lv>All levels</td></tr><tr><td>Tuesday</td><td class=cl>Strength Lab</td><td>18:30</td><td class=lv>All levels</td></tr><tr><td>Wednesday</td><td class=cl>Engine Room</td><td>18:00</td><td class=lv>All levels</td></tr><tr><td>Thursday</td><td class=cl>Hyrox Prep</td><td>18:30</td><td class=lv>Intermediate</td></tr><tr><td>Saturday</td><td class=cl>Team Session</td><td>09:00</td><td class=lv>Members</td></tr></tbody>
-    </table>
+    <div class="tblwrap rv">
+      <table>
+        <thead><tr><th>Day</th><th>Session</th><th>Time</th><th>Level</th></tr></thead>
+        <tbody><tr><td>Monday</td><td>Compound Conditioning</td><td>18:00</td><td>All levels</td></tr><tr><td>Tuesday</td><td>Strength Lab</td><td>18:30</td><td>All levels</td></tr><tr><td>Wednesday</td><td>Engine Room</td><td>18:00</td><td>All levels</td></tr><tr><td>Thursday</td><td>Hyrox Prep</td><td>18:30</td><td>Intermediate</td></tr><tr><td>Saturday</td><td>Team Session</td><td>09:00</td><td>Members</td></tr></tbody>
+      </table>
+    </div>
+    <div class="latest rv">
+      <div>
+        <p class="t">Latest intake</p>
+        <h3>Start this week.</h3>
+        <p>Private tour, then your first session on us.</p>
+      </div>
+      <button class="btn solid" data-book>Reserve a spot</button>
+    </div>
   </div>
 </section>
 
-<section id="visit" style="padding-top:20px">
-  <div class="wrap">
-    <div class="sec-h rv">
+<section class="block visit" id="visit">
+  <div class="w">
+    <div class="bh">
       <div>
-        <p class="k">Visit</p>
-        <h2>Come see it <em>in person.</em></h2>
+        <p class="k">04 &mdash; Visit</p>
+        <h2>Find us on <em class="serif">the floor.</em></h2>
       </div>
     </div>
-    <div class="visit">
-      <div class="card rv">
-        <h3>Compound<br><em>Ruddington, Nottingham</em></h3>
-        <div class="vrow"><span>Address</span><a href="https://maps.google.com/?q=Compound+Strength+and+Conditioning+Ruddington+NG11+6AT" target="_blank" rel="noopener">Ruddington, Nottingham NG11 6AT</a></div>
-        <div class="vrow"><span>Hours</span><div>Coach-led sessions &middot; 7 days</div></div>
-        <div class="vrow"><span>Call</span><a href="tel:tel:07495470874">07495 470874</a></div>
-        <div class="vrow"><span>Instagram</span><a href="https://www.instagram.com/compound.sc/" target="_blank" rel="noopener">@compound.sc</a></div>
+    <div class="cols">
+      <div class="rv">
+        <div class="vlist">
+          <div class="vrow"><b>Address</b><span>Ruddington, Nottingham NG11 6AT</span></div>
+          <div class="vrow"><b>Hours</b><span>Coach-led sessions &middot; 7 days</span></div>
+          <div class="vrow"><b>Phone</b><span>07495 470874</span></div>
+          <div class="vrow"><b>Instagram</b><span><a href="https://www.instagram.com/compound.sc/" target="_blank" rel="noopener">@compound.sc</a></span></div>
+          <div class="vrow"><b>Directions</b><span><a href="https://maps.google.com/?q=Compound+Strength+and+Conditioning+Ruddington+NG11+6AT" target="_blank" rel="noopener">Open in maps</a></span></div>
+        </div>
       </div>
-      <div class="card cta-card rv">
-        <div>
-          <p class="k" style="color:#fff">Your first session</p>
-          <h3>Walk the floor.<br><em>Feel the kit.</em></h3>
-          <p>Private tours run daily. Day passes are open to anyone training seriously &mdash; message ahead and the door is yours.</p>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn primary" data-book>Book a private tour</button>
-          <button class="btn ghost" data-pass>Request a day pass</button>
-        </div>
+      <div class="vcard rv">
+        <p class="k">Private tour &middot; Day pass</p>
+        <h3>See the floor before you commit.</h3>
+        <p>Walk in, meet a coach, try the kit. Tell us when suits and we will hold the slot.</p>
+        <button class="btn solid" data-book>Book a private tour</button>
+        <button class="btn ghostb" data-pass style="margin-top:10px;width:100%">Request a day pass</button>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="frow">
-      <div class="fcol"><b>Compound</b><p>Ruddington, Nottingham NG11 6AT<br>Ruddington, Nottingham</p></div>
-      <div class="fcol"><b>Train</b><p><a href="#floor">The Floor</a><br><a href="#timetable">Timetable</a><br><a href="#" data-book>Private tour</a></p></div>
-      <div class="fcol"><b>Contact</b><p><a href="tel:tel:07495470874">07495 470874</a><br><a href="https://www.instagram.com/compound.sc/" target="_blank" rel="noopener">@compound.sc</a><br><a href="https://maps.google.com/?q=Compound+Strength+and+Conditioning+Ruddington+NG11+6AT" target="_blank" rel="noopener">Directions</a></p></div>
-    </div>
-    <div class="fbot"><span>&copy; <span id="yr">2026</span> Compound &middot; Ruddington, Nottingham</span><span>Strength &amp; conditioning &middot; Coach-led</span></div>
-  </div>
+  <div class="swap" aria-hidden="true"></div>
+  <div class="fname serif">Compound</div>
+  <p>Ruddington, Nottingham NG11 6AT &middot; @compound.sc &middot; 07495 470874</p>
+  <p style="margin-top:10px">&copy; <span id="yr">2026</span> Compound. All rights reserved.</p>
 </footer>
 
-<div id="modal" role="dialog" aria-modal="true">
-  <div class="mcard" style="position:relative">
-    <button class="mclose" id="mclose" aria-label="Close">&times;</button>
-    <h3 id="mtitle">Book a <em>private tour</em></h3>
-    <p class="sub">Tell us when you train. We reply the same day.</p>
-    <form id="bookForm" class="f">
-      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" required placeholder="Your name"></div>
-      <div class="field"><label for="f-phone">Phone or email</label><input id="f-phone" name="contact" required placeholder="07... or you@email.com"></div>
-      <div class="field"><label for="f-type">I am interested in</label>
-        <select id="f-type" name="type">
-          <option>Private tour</option><option>Day pass</option><option>Membership info</option><option>Personal training</option>
-        </select></div>
-      <div class="field"><label for="f-when">Preferred day &amp; time</label><input id="f-when" name="when" placeholder="e.g. Thursday evening"></div>
-      <div class="field"><label for="f-note">Anything else</label><textarea id="f-note" name="note" placeholder="Goals, experience, questions..."></textarea></div>
-      <button class="btn primary" type="submit" style="justify-content:center">Send request</button>
+<div id="modal" aria-hidden="true">
+  <div class="mcard" role="dialog" aria-modal="true">
+    <button id="mclose" aria-label="Close">&times;</button>
+    <p class="k">Compound &middot; Ruddington, Nottingham</p>
+    <h3 id="mtitle">Book a <em class="serif">private tour</em></h3>
+    <form id="bookForm">
+      <div class="field"><label for="f-name">Your name</label><input id="f-name" required placeholder="Sam Carter"></div>
+      <div class="field"><label for="f-phone">Phone</label><input id="f-phone" required placeholder="07___ ______"></div>
+      <div class="field"><label for="f-type">I'm interested in</label>
+        <select id="f-type"><option>Private tour</option><option>Day pass</option><option>Membership info</option></select>
+      </div>
+      <div class="field"><label for="f-when">Preferred day &amp; time</label><input id="f-when" placeholder="e.g. Tuesday evening"></div>
+      <button class="btn solid" type="submit">Send request</button>
     </form>
-    <div class="ok" id="okPanel">
-      <b>Request ready</b>
-      <p id="okTxt">Tap below to send it straight to the gym.</p>
-      <a id="okCall" href="tel:tel:07495470874">Call 07495 470874</a>
-      <a id="okIg" href="https://www.instagram.com/compound.sc/" target="_blank" rel="noopener">Message on Instagram</a>
-      <a id="okMail" href="https://www.compoundsc.co.uk/">Contact the gym</a>
+    <div id="okPanel">
+      <h4 class="serif">Request noted.</h4>
+      <p>Your details are ready to send to Compound. Tap below to finish up.</p>
+      <a class="btn solid" href="https://www.compoundsc.co.uk/" target="_blank" rel="noopener" style="display:block">Contact Compound</a>
+      <a class="btn ghostb" href="tel:07495470874" style="display:block;margin-top:10px">Call the gym</a>
     </div>
   </div>
 </div>
@@ -334,60 +380,55 @@ footer{border-top:1px solid var(--line);padding:54px 0 34px;background:#0A0B0C}
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var intro = document.getElementById("intro"), body = document.body;
-  function lift(){
-    if(!intro || intro.classList.contains("done")) return;
+  function lift(){ if(!intro || intro.classList.contains("done")) return;
     intro.classList.add("done"); body.classList.remove("locked");
-    setTimeout(function(){ intro.style.display = "none"; }, 950);
-  }
-  var timer = setTimeout(lift, reduce ? 350 : 2350);
+    setTimeout(function(){ intro.style.display = "none"; }, 950); }
+  var timer = setTimeout(lift, reduce ? 500 : 2500);
   var eb = document.getElementById("enterBtn");
-  if(eb) eb.addEventListener("click", function(){ clearTimeout(timer); lift(); });
+  if (eb) eb.addEventListener("click", function(){ clearTimeout(timer); lift(); });
 
   var nav = document.getElementById("nav");
-  function onScroll(){ nav.classList.toggle("solid", window.scrollY > 40); }
+  function onScroll(){
+    nav.classList.toggle("solid", window.scrollY > 40);
+    var secs = ["floor","motion","timetable","visit"], links = document.querySelectorAll("nav.mid a");
+    var cur = "";
+    secs.forEach(function(id){ var el=document.getElementById(id); if(el && el.getBoundingClientRect().top < 180) cur = id; });
+    links.forEach(function(a){ a.classList.toggle("on", a.getAttribute("href") === "#"+cur); });
+  }
   window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
 
-  if("IntersectionObserver" in window && !reduce){
+  var rvs = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, {threshold:.12});
-    document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
-  } else {
-    document.querySelectorAll(".rv").forEach(function(el){ el.classList.add("in"); });
-  }
+    }, {threshold:.1});
+    rvs.forEach(function(el){ io.observe(el); });
+  } else { rvs.forEach(function(el){ el.classList.add("in"); }); }
 
-  var modal = document.getElementById("modal"), form = document.getElementById("bookForm"), ok = document.getElementById("okPanel");
-  var mtitle = document.getElementById("mtitle");
-  function open(kind){
-    mtitle.innerHTML = kind === "day" ? "Request a <em>day pass</em>" : "Book a <em>private tour</em>";
+  var modal = document.getElementById("modal"), form = document.getElementById("bookForm"),
+      ok = document.getElementById("okPanel"), mtitle = document.getElementById("mtitle");
+  function open(type){
+    if (mtitle) mtitle.innerHTML = type === "day" ? "Request a <em class=\"serif\">day pass</em>" : "Book a <em class=\"serif\">private tour</em>";
     var sel = document.getElementById("f-type");
-    if(sel) sel.value = kind === "day" ? "Day pass" : "Private tour";
+    if (sel) sel.value = type === "day" ? "Day pass" : "Private tour";
     modal.classList.add("open"); body.classList.add("locked");
-    form.style.display = "grid"; ok.classList.remove("show");
   }
   function close(){ modal.classList.remove("open"); body.classList.remove("locked"); }
-  document.querySelectorAll("[data-book]").forEach(function(b){ b.addEventListener("click", function(e){ e.preventDefault(); open("tour"); }); });
-  document.querySelectorAll("[data-pass]").forEach(function(b){ b.addEventListener("click", function(e){ e.preventDefault(); open("day"); }); });
+  var bs = document.querySelectorAll("[data-book]");
+  for (var i=0;i<bs.length;i++) bs[i].addEventListener("click", function(e){ e.preventDefault(); open("tour"); });
+  var ps = document.querySelectorAll("[data-pass]");
+  for (var j=0;j<ps.length;j++) ps[j].addEventListener("click", function(e){ e.preventDefault(); open("day"); });
   document.getElementById("mclose").addEventListener("click", close);
-  modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
-  window.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var n = document.getElementById("f-name").value.trim() || "there";
-    document.getElementById("okTxt").textContent = "Thanks " + n + " - send it across and the team will reply the same day.";
-    form.style.display = "none"; ok.classList.add("show");
-  });
+  modal.addEventListener("click", function(e){ if (e.target === modal) close(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
+  form.addEventListener("submit", function(e){ e.preventDefault(); form.style.display = "none"; ok.classList.add("show"); });
 
-  var yr = document.getElementById("yr");
-  if(yr) yr.textContent = new Date().getFullYear();
+  var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
 
-  var im = document.createElement("script");
-  im.type = "importmap";
+  var im = document.createElement("script"); im.type = "importmap";
   im.textContent = JSON.stringify({imports:{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}});
   document.head.appendChild(im);
-  var m = document.createElement("script");
-  m.type = "module";
-  m.textContent = `
+  var m = document.createElement("script"); m.type = "module"; m.textContent = `
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
@@ -646,8 +687,7 @@ addEventListener('resize', () => {
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
 });
-`;
-  document.body.appendChild(m);
+`; document.body.appendChild(m);
 })();
 </script>
 </body>
